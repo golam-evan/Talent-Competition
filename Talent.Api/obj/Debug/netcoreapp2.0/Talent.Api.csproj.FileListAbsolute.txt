@@ -24,3 +24,17 @@ C:\Talent-StandardTasks\Talent\Talent.Api\obj\Debug\netcoreapp2.0\Talent.Api.Ass
 C:\Talent-StandardTasks\Talent\Talent.Api\obj\Debug\netcoreapp2.0\Talent.Api.AssemblyInfo.cs
 C:\Talent-StandardTasks\Talent\Talent.Api\obj\Debug\netcoreapp2.0\Talent.Api.dll
 C:\Talent-StandardTasks\Talent\Talent.Api\obj\Debug\netcoreapp2.0\Talent.Api.pdb
+D:\Talent\Talent.Api\bin\Debug\netcoreapp2.0\Talent.Api.deps.json
+D:\Talent\Talent.Api\bin\Debug\netcoreapp2.0\Talent.Api.runtimeconfig.json
+D:\Talent\Talent.Api\bin\Debug\netcoreapp2.0\Talent.Api.runtimeconfig.dev.json
+D:\Talent\Talent.Api\bin\Debug\netcoreapp2.0\Talent.Api.dll
+D:\Talent\Talent.Api\bin\Debug\netcoreapp2.0\Talent.Api.pdb
+D:\Talent\Talent.Api\bin\Debug\netcoreapp2.0\Talent.Common.dll
+D:\Talent\Talent.Api\bin\Debug\netcoreapp2.0\Talent.Common.pdb
+D:\Talent\Talent.Api\obj\Debug\netcoreapp2.0\Talent.Api.csprojAssemblyReference.cache
+D:\Talent\Talent.Api\obj\Debug\netcoreapp2.0\Talent.Api.csproj.CoreCompileInputs.cache
+D:\Talent\Talent.Api\obj\Debug\netcoreapp2.0\Talent.Api.AssemblyInfoInputs.cache
+D:\Talent\Talent.Api\obj\Debug\netcoreapp2.0\Talent.Api.AssemblyInfo.cs
+D:\Talent\Talent.Api\obj\Debug\netcoreapp2.0\Talent.Api.csproj.CopyComplete
+D:\Talent\Talent.Api\obj\Debug\netcoreapp2.0\Talent.Api.dll
+D:\Talent\Talent.Api\obj\Debug\netcoreapp2.0\Talent.Api.pdb

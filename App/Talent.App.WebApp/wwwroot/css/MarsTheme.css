@@ -1460,4 +1460,10 @@ div.ReactTags__selected a.ReactTags__remove {
 .ui.dropdown.manage-jobs{
     margin-bottom: 10px;
 }
+.card-width{
+    width:325px;
+}
+.card-description-height{
+    height:150px;
+}
 /*Manage jobs - End*/

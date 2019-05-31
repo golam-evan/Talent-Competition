@@ -23,30 +23,14 @@ export default class AccountProfile extends React.Component {
         super(props)
 
         this.state = {
-            profileData: {
-                address: {},
-                nationality: '',
-                education: [],
-                languages: [],
-                skills: [],
-                experience: [],
-                certifications: [],
-                visaStatus: '',
-                visaExpiryDate: '',
-                profilePhoto: '',
-                linkedAccounts: {
-                    linkedIn: "",
-                    github: ""
-                },
-                jobSeekingStatus: {
-                    status: "",
-                    availableDate: null
-                }
-            },
+            profileData: {},
             loaderData: loaderData,
 
         }
 
+        this.saveExperience = this.saveExperience.bind(this)
+        this.saveSkills = this.saveSkills.bind(this)
+        this.saveLanguages = this.saveLanguages.bind(this)
         this.updateWithoutSave = this.updateWithoutSave.bind(this)
         this.updateAndSaveData = this.updateAndSaveData.bind(this)
         this.updateForComponentId = this.updateForComponentId.bind(this)
@@ -76,6 +60,7 @@ export default class AccountProfile extends React.Component {
             },
             type: "GET",
             success: function (res) {
+                console.log(res)
                 this.updateWithoutSave(res.data)
             }.bind(this)
         })
@@ -91,17 +76,77 @@ export default class AccountProfile extends React.Component {
 
     //updates component's state and saves data
     updateAndSaveData(newValues) {
-        let newProfile = Object.assign({}, this.state.profileData, newValues)
+        console.log(newValues)
+        let newProfile = Object.assign({}, this.state.profileData)
+        if (newValues.linkedIn)
+            newProfile.linkedAccounts.linkedIn = newValues.linkedIn
+        if (newValues.github)
+            newProfile.linkedAccounts.github = newValues.github
+        if (newValues.summary)
+            newProfile.summary = newValues.summary
+        if (newValues.description)
+            newProfile.description = newValues.description
+        if (newValues.firstName)
+            newProfile.firstName = newValues.firstName
+        if (newValues.lastName)
+            newProfile.lastName = newValues.lastName
+        if (newValues.email)
+            newProfile.email = newValues.email
+        if (newValues.phone)
+            newProfile.phone = newValues.phone
+        if (newValues.number)
+            newProfile.address.number = newValues.number
+        if (newValues.street)
+            newProfile.address.street = newValues.street
+        if (newValues.suburb)
+            newProfile.address.suburb = newValues.suburb
+        if (newValues.country)
+            newProfile.address.country = newValues.country
+        if (newValues.city)
+            newProfile.address.city = newValues.city
+        if (newValues.postCode)
+            newProfile.address.postCode = newValues.postCode
+        if (newValues.nationality)
+            newProfile.nationality = newValues.nationality
+        if (newValues.visaStatus)
+            newProfile.visaStatus = newValues.visaStatus
+        if (newValues.visaExpiryDate)
+            newProfile.visaExpiryDate = newValues.visaExpiryDate
+        if (newValues.status)
+            newProfile.jobSeekingStatus.status = newValues.status
+        newProfile.profilePhoto=newValues
         this.setState({
             profileData: newProfile
         }, this.saveProfile)
     }
-
+    saveLanguages(newValues) {
+        let newProfile = Object.assign({}, this.state.profileData)
+        newProfile.languages = newValues
+        this.setState({
+            profileData: newProfile
+        }, this.saveProfile)
+    }
+    //UpdateAndSaveSkills
+    saveSkills(newValues) {
+        let newProfile = Object.assign({}, this.state.profileData)
+        newProfile.skills = newValues
+        this.setState({
+            profileData: newProfile
+        }, this.saveProfile)
+    }
+    saveExperience(newValues) {
+        let newProfile = Object.assign({}, this.state.profileData)
+        newProfile.experience = newValues
+        this.setState({
+            profileData: newProfile
+        }, this.saveProfile)
+    }
     updateForComponentId(componentId, newValues) {
         this.updateAndSaveData(newValues)
     }
 
     saveProfile() {
+        console.log(this.state.profileData)
         var cookies = Cookies.get('talentAuthToken');
         $.ajax({
             url: 'http://localhost:60290/profile/profile/updateTalentProfile',
@@ -112,7 +157,6 @@ export default class AccountProfile extends React.Component {
             type: "POST",
             data: JSON.stringify(this.state.profileData),
             success: function (res) {
-                console.log(res)
                 if (res.success == true) {
                     TalentUtil.notification.show("Profile updated sucessfully", "success", null, null)
                 } else {
@@ -154,6 +198,17 @@ export default class AccountProfile extends React.Component {
                                             />
                                         </FormItemWrapper>
                                         <FormItemWrapper
+                                            title='Description'
+                                            tooltip='A short description about yourself.'
+                                        >
+                                            <SelfIntroduction
+                                                summary={this.state.profileData.summary}
+                                                description={this.state.profileData.description}
+                                                updateProfileData={this.updateAndSaveData}
+                                                updateWithoutSave={this.updateWithoutSave}
+                                            />
+                                        </FormItemWrapper>
+                                        <FormItemWrapper
                                             title='User Details'
                                             tooltip='Enter your contact details'
                                         >
@@ -187,7 +242,7 @@ export default class AccountProfile extends React.Component {
                                         >
                                             <Language
                                                 languageData={this.state.profileData.languages}
-                                                updateProfileData={this.updateAndSaveData}
+                                                updateProfileData={this.saveLanguages}
                                             />
                                         </FormItemWrapper>
                                         <FormItemWrapper
@@ -196,7 +251,7 @@ export default class AccountProfile extends React.Component {
                                         >
                                             <Skill
                                                 skillData={this.state.profileData.skills}
-                                                updateProfileData={this.updateAndSaveData}
+                                                updateProfileData={this.saveSkills}
                                             />
                                         </FormItemWrapper>
                                         <FormItemWrapper
@@ -205,25 +260,7 @@ export default class AccountProfile extends React.Component {
                                         >
                                             <Experience
                                                 experienceData={this.state.profileData.experience}
-                                                updateProfileData={this.updateAndSaveData}
-                                            />
-                                        </FormItemWrapper>
-                                        <FormItemWrapper
-                                            title='Education'
-                                            tooltip='Add your educational background'
-                                        >
-                                            <Education
-                                                educationData={this.state.profileData.education}
-                                                updateProfileData={this.updateAndSaveData}
-                                            />
-                                        </FormItemWrapper>
-                                        <FormItemWrapper
-                                            title='Certification'
-                                            tooltip='List your certificates, honors and awards'
-                                        >
-                                            <Certificate
-                                                certificateData={this.state.profileData.certifications}
-                                                updateProfileData={this.updateAndSaveData}
+                                                updateProfileData={this.saveExperience}
                                             />
                                         </FormItemWrapper>
                                         <FormItemWrapper
@@ -254,7 +291,7 @@ export default class AccountProfile extends React.Component {
                                         >
                                             <PhotoUpload
                                                 imageId={this.state.profileData.profilePhotoUrl}
-                                                updateProfileData={this.updateWithoutSave}
+                                                updateProfileData={this.updateAndSaveData}
                                                 savePhotoUrl='http://localhost:60290/profile/profile/updateProfilePhoto'
                                             />
                                         </FormItemWrapper>
@@ -281,12 +318,6 @@ export default class AccountProfile extends React.Component {
                                                 saveCVUrl={'http://localhost:60290/profile/profile/updateTalentCV'}
                                             />
                                         </FormItemWrapper>
-                                        <SelfIntroduction
-                                            summary={this.state.profileData.summary}
-                                            description={this.state.profileData.description}
-                                            updateProfileData={this.updateAndSaveData}
-                                            updateWithoutSave={this.updateWithoutSave}
-                                        />
                                     </div>
                                 </form>
                             </div >

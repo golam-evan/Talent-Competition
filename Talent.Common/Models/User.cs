@@ -99,12 +99,12 @@ namespace Talent.Common.Models
     public class JobSeekingStatus
     {
         public string Status { get; set; }
-        public DateTime? AvailableDate { get; set; }
+        //public DateTime? AvailableDate { get; set; }
 
         public JobSeekingStatus()
         {
             Status = "";
-            AvailableDate = null;
+            //AvailableDate = null;
         }
     }
 }

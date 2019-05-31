@@ -1,32 +1,31 @@
 ﻿import React from 'react';
+import { Card, Image, Header } from 'semantic-ui-react'
 
 
 export default class FollowingSuggestion extends React.Component {
     render() {
         return (
-            <div className="content">
-                <div className="center aligned header">Follow Talent</div>
-                <div className="ui items following-suggestion">
-                    <div className="item">
-                        <div className="ui image">
-                            <img className="ui circular image" src="http://semantic-ui.com/images/avatar/small/jenny.jpg" />
-                        </div>
-                        <div className="content">
-                            <a className="">Veronika Ossi</a>
-                            <button className="ui primary basic button"><i className="icon user"></i>Follow</button>
-                        </div>
-                    </div>
-                    <div className="item">
-                        <div className="ui image">
-                            <img className="ui circular image" src="http://semantic-ui.com/images/avatar/small/jenny.jpg" />
-                        </div>
-                        <div className="content">
-                            <a className="">Veronika Ossi</a>
-                            <button className="ui primary basic button"><i className="icon user"></i>Follow</button>
-                        </div>
-                    </div>
+            <Card>
+                <div style={{ marginTop:"10px" }}>
+                    <Header textAlign="center" as="h3">Follow Talent</Header>
                 </div>
-            </div>
+                <div style={{ marginLeft:"35px" }} className="ui items following-suggestion">
+                       <div className="item">
+                            <Image bordered="true" circular="true" src="http://semantic-ui.com/images/avatar/small/jenny.jpg" ></Image>
+                        <div className="content">
+                            <a className="">Veronika Ossi</a>
+                            <button className="ui primary basic button"><i className="icon user"></i>Follow</button>
+                        </div>
+                    </div>
+                    <div className="item">
+                                <Image bordered="true" circular="true" src="http://semantic-ui.com/images/avatar/small/jenny.jpg" ></Image>
+                        <div className="content">
+                            <a className="">Veronika Ossi</a>
+                            <button className="ui primary basic button"><i className="icon user"></i>Follow</button>
+                        </div>
+                    </div>
+                    </div>
+                 </Card>
         )
     }
 }

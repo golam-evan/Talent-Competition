@@ -13,12 +13,12 @@ namespace Talent.Services.Profile.Domain.Contracts
     {
         bool AddNewLanguage(AddLanguageViewModel language);
 
-        Task<TalentProfileViewModel> GetTalentProfile(String Id);
+        Task<User> GetTalentProfile(String Id);
         Task<IEnumerable<string>> GetTalentSuggestionIds(string employerOrJobId, bool forJob, int position, int increment);
         Task<IEnumerable<TalentSnapshotViewModel>> GetTalentSnapshotList(string employerOrJobId, bool forJob, int position, int increment);
         Task<IEnumerable<TalentSnapshotViewModel>> GetTalentSnapshotList(IEnumerable<string> ids);
 
-        Task<bool> UpdateTalentProfile(TalentProfileViewModel profile, String updaterId);
+        Task<bool> UpdateTalentProfile(User profile, String updaterId);
         Task<bool> UpdateTalentPhoto(string talentId, IFormFile file);
 
         Task<bool> AddTalentVideo(string talentId, IFormFile file);
@@ -34,7 +34,7 @@ namespace Talent.Services.Profile.Domain.Contracts
 
         Task<bool> UpdateTalentCV(string talentId, IFormFile file);
 
-        Task<IEnumerable<TalentSuggestionViewModel>> GetFullTalentList();
+        Task<IEnumerable<TalentSnapshotViewModel>> GetFullTalentList();
         IEnumerable<TalentMatchingEmployerViewModel> GetEmployerList();
         Task<IEnumerable<TalentMatchingEmployerViewModel>> GetEmployerListByFilterAsync(SearchCompanyModel model);
         Task<IEnumerable<TalentSuggestion>> GetSuggestionList(string employerOrJobId, bool forJob, string recruiterId);

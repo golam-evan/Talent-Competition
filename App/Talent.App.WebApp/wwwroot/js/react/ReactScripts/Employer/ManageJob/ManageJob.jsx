@@ -13,7 +13,6 @@ export default class ManageJob extends React.Component {
         let loader = loaderData
         loader.allowedUsers.push("Employer");
         loader.allowedUsers.push("Recruiter");
-        //console.log(loader)
         this.state = {
             loadJobs: [],
             initalPage: 1,
@@ -147,8 +146,6 @@ export default class ManageJob extends React.Component {
             success: function (res) {
                 this.setState({ loadJobs: res.myJobs, pageOfItems: res.myJobs.slice(0, 3) })
                 this.setPage(1)
-                console.log(this.state.loadJobs)
-                console.log(this.state.pageOfItems)
             }.bind(this)
         })
     }

@@ -49,16 +49,24 @@ namespace Talent.Services.Profile.Domain.Services
             throw new NotImplementedException();
         }
 
-        public async Task<TalentProfileViewModel> GetTalentProfile(string Id)
+        public async Task<User> GetTalentProfile(string Id)
         {
-            //Your code here;
-            throw new NotImplementedException();
+            User profile = null;
+
+            return profile = await _userRepository.GetByIdAsync(Id);
         }
 
-        public async Task<bool> UpdateTalentProfile(TalentProfileViewModel model, string updaterId)
+        public async Task<bool> UpdateTalentProfile(User model, string updaterId)
         {
-            //Your code here;
-            throw new NotImplementedException();
+            try
+            {
+                await _userRepository.Update(model);
+                return true;
+            }
+            catch (MongoException e)
+            { 
+                return false;
+            }
         }
 
         public async Task<EmployerProfileViewModel> GetEmployerProfile(string Id, string role)
@@ -271,10 +279,32 @@ namespace Talent.Services.Profile.Domain.Services
 
         #region TalentMatching
 
-        public async Task<IEnumerable<TalentSuggestionViewModel>> GetFullTalentList()
+        public async Task<IEnumerable<TalentSnapshotViewModel>> GetFullTalentList()
         {
-            //Your code here;
-            throw new NotImplementedException();
+                List<TalentSnapshotViewModel> talents = new List<TalentSnapshotViewModel>();
+                var users = _userRepository.GetQueryable().ToList();
+                int count = users.Count();
+                foreach (var item in users)
+                {
+                   //var talent = new TalentSnapshotViewModel
+                   //{
+                   //     Id=item.Id,
+                   //     Name=item.FirstName+item.LastName,
+                   //     PhotoId=item.ProfilePhotoUrl,
+                   //     VideoUrl=item.VideoName,
+                   //     CVUrl=item.CvName,
+                   //     Summary=item.Summary,
+                   //     CurrentEmployment="",
+                   //     Visa=item.VisaStatus,
+                   //     Level="",
+                   //     Skills=null
+
+                   //};
+
+                //talents.Add(talent);
+
+            }
+            return talents;
         }
 
         public IEnumerable<TalentMatchingEmployerViewModel> GetEmployerList()

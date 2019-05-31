@@ -88,7 +88,7 @@ namespace Talent.Services.Profile.Controllers
 
         [HttpGet("getProfile")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "talent")]
-        public async Task<IActionResult> GetProfile()
+        public async Task<IActionResult> GetTalentProfile()
         {
             var userId = _userAppContext.CurrentUserId;
             var user = await _userRepository.GetByIdAsync(userId);
@@ -420,7 +420,7 @@ namespace Talent.Services.Profile.Controllers
 
         [HttpPost("updateTalentProfile")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "talent")]
-        public async Task<IActionResult> UpdateTalentProfile([FromBody]TalentProfileViewModel profile)
+        public async Task<IActionResult> UpdateTalentProfile([FromBody]User profile)
         {
             if (ModelState.IsValid)
             {
